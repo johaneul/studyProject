@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+	<title>Angular | TodoMVC</title>
+	<!-- 앵귤러 로딩 -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body ng-app="todoApp">
+	<div ng-controller="todoCtrl" class="container">
+		<h1>Todos</h1>
+
+
+		<form ng-submit="addTodo(todoTitle)">
+			<div class="input-group" style="margin-bottom: 5%;">
+				<input type="text" class="form-control" ng-model="todoTitle" placeholder="Type todo" autofocus>
+				<span class="input-group-btn">
+					<button class="btn btn-info" type="submit">Add</button>
+				  </span>
+			</div>
+		</form>
+
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="todo in todos | filter: {}">
+				<div class="input-group">
+					<span class="input-group-addon">
+						<input type="checkbox" class="" ng-model="todo.completed">
+					</span>
+					<input type="text" class="form-control" ng-model="todo.title">
+					<span class="input-group-btn">
+						<button  class="btn btn btn-warning"  type="button" ng-click="removeTodo(todo.id)">Remove</button>
+				  	</span>
+				</div>
+			</li>
+		</ul>
+		<div class="btn-group">
+			
+			<button type="button" class="btn btn-primary" ng-click="status='completed'">Completed</button>
+			<button type="button" class="btn btn-primary" ng-click="status='active'">Active</button>
+			<button type="button" class="btn btn-primary" ng-click="status=''">All</button>
+		</div>
+		
+		<pre>{{todos | json}}</pre>
+	</div>
+
+	
+
+</body>
+
+<script src="node_modules/angular/angular.js"></script>
+<script src="js/todoApp.js"></script>
+<script src="js/ctrl/todoMvcCtrl.js"></script>
+
+
+</html>
